@@ -106,12 +106,12 @@ package org.flixel.data;
 			_text.wordWrap = true;
 			_text.selectable = false;
 			#if flash9
-			_text.embedFonts = true;
+			_text.embedFonts = false;
 			_text.antiAliasType = AntiAliasType.NORMAL;
 			_text.gridFitType = GridFitType.PIXEL;
 			#else
 			#end
-			_text.defaultTextFormat = new TextFormat("system",8,0xffffff);
+			_text.defaultTextFormat = new TextFormat("Arial",8,0xffffff);
 			addChild(_text);
 
 			_fpsDisplay = new TextField();
@@ -122,12 +122,12 @@ package org.flixel.data;
 			_fpsDisplay.wordWrap = true;
 			_fpsDisplay.selectable = false;
 			#if flash9
-			_fpsDisplay.embedFonts = true;
+			_fpsDisplay.embedFonts = false;
 			_fpsDisplay.antiAliasType = AntiAliasType.NORMAL;
 			_fpsDisplay.gridFitType = GridFitType.PIXEL;
 			#else
 			#end
-			_fpsDisplay.defaultTextFormat = new TextFormat("system",16,0xffffff,true,null,null,null,null,TextFormatAlign.RIGHT);
+			_fpsDisplay.defaultTextFormat = new TextFormat("Arial",16,0xffffff,true,null,null,null,null,TextFormatAlign.RIGHT);
 			addChild(_fpsDisplay);
 			
 			_extraDisplay = new TextField();
@@ -140,12 +140,12 @@ package org.flixel.data;
 			_extraDisplay.wordWrap = true;
 			_extraDisplay.selectable = false;
 			#if flash9
-			_extraDisplay.embedFonts = true;
+			_extraDisplay.embedFonts = false;
 			_extraDisplay.antiAliasType = AntiAliasType.NORMAL;
 			_extraDisplay.gridFitType = GridFitType.PIXEL;
 			#else
 			#end
-			_extraDisplay.defaultTextFormat = new TextFormat("system",8,0xffffff,true,null,null,null,null,TextFormatAlign.RIGHT);
+			_extraDisplay.defaultTextFormat = new TextFormat("Arial",8,0xffffff,true,null,null,null,null,TextFormatAlign.RIGHT);
 			addChild(_extraDisplay);
 			
 			_lines = new Array();
@@ -174,6 +174,8 @@ package org.flixel.data;
 				#if flash9
 				_text.appendText(Text+"\n");
 				#else
+				var newText : String = _text.text + Text + "\n";
+				_text.text = newText;
 				#end
 			}
 			_text.scrollV = Math.floor(_text.height);

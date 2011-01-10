@@ -33,10 +33,10 @@ package org.flixel;
 		 * @param	Text			The actual text you would like to display initially.
 		 * @param	EmbeddedFont	Whether this text field uses embedded fonts or nto
 		 */
-		public function new(X:Float, Y:Float, Width:Int, ?Text:String=null, ?EmbeddedFont:Bool=true)
+		public function new(X:Float, Y:Float, Width:Int, ?Text:String=null, ?EmbeddedFont:Bool=false)
 		{
 			super(Math.floor(X),Math.floor(Y));
-			createGraphic(Width,1,0);
+			createGraphic(Width, 1, 0);
 			
 			if(Text == null)
 				Text = "";
@@ -51,14 +51,13 @@ package org.flixel;
 			_tf.multiline = true;
 			_tf.wordWrap = true;
 			_tf.text = Text;
-			var tf:TextFormat = new TextFormat("system",8,0xffffff);
+			var tf:TextFormat = new TextFormat("Arial", 8, 0xffffff);
 			_tf.defaultTextFormat = tf;
 			_tf.setTextFormat(tf);
 			if(Text.length <= 0)
 				_tf.height = 1;
 			else
 				_tf.height = 10;
-			
 			_regen = true;
 			_shadow = 0;
 			solid = false;
@@ -225,6 +224,8 @@ package org.flixel;
 					height += _tf.getLineMetrics(i).height;
 				#else
 				var nl:Int = 1;
+				for (i in 0 ... nl)
+					height += _tf.defaultTextFormat.size;
 				#end
 				height += 4; //account for 2px gutter on top and bottom
 				_pixels = new BitmapData(Math.floor(width),Math.floor(height),true,0);
@@ -249,9 +250,6 @@ package org.flixel;
 				//If it's a single, centered line of text, we center it ourselves so it doesn't blur to hell
 				#if flash9
 				if((tf.align == TextFormatAlign.CENTER) && (_tf.numLines == 1))
-				#else
-				if(tf.align == TextFormatAlign.CENTER)
-				#end
 				{
 					tfa = new TextFormat(tf.font,tf.size,tf.color,null,null,null,null,null,TextFormatAlign.LEFT);
 					_tf.setTextFormat(tfa);				
@@ -261,6 +259,9 @@ package org.flixel;
 					_mtx.translate(Math.floor((width - 0)/2),0);
 					#end
 				}
+				#else
+				// flash.text.TextField has no field numLines
+				#end
 				//Render a single pixel shadow beneath the text
 				if(_shadow > 0)
 				{

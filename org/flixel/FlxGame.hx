@@ -204,7 +204,7 @@ class FlxGame extends Sprite {
 	 */
 	function onKeyUp(event:KeyboardEvent):Void
 	{
-		if((event.keyCode == 192) || (event.keyCode == 220)) //FOR ZE GERMANZ
+		if((event.keyCode == 192) || (event.keyCode == 220) || (event.keyCode == 222)) //FOR ZE GERMANZ
 		{
 			_console.toggle();
 			return;
@@ -452,12 +452,12 @@ class FlxGame extends Sprite {
 		text.wordWrap = true;
 		text.selectable = false;
 		#if flash9
-		text.embedFonts = true;
+		text.embedFonts = false;
 		text.antiAliasType = AntiAliasType.NORMAL;
 		text.gridFitType = GridFitType.PIXEL;
 		#else
 		#end
-		text.defaultTextFormat = new TextFormat("system",8,0xffffff,null,null,null,null,null,TextFormatAlign.CENTER);
+		text.defaultTextFormat = new TextFormat("Arial",8,0xffffff,null,null,null,null,null,TextFormatAlign.CENTER);
 		_soundTray.addChild(text);
 		text.text = "VOLUME";
 		text.y = 16;
