@@ -63,7 +63,11 @@ import flash.display.Bitmap;
 		 * E.g. "multiply", "screen", etc.
 		 * @default null
 		 */
+		#if flash9
+		public var blend:BlendMode;
+		#else
 		public var blend:String;
+		#end
 		/**
 		 * Controls whether the object is smoothed when rotated, affects performance.
 		 * @default false
@@ -470,7 +474,7 @@ import flash.display.Bitmap;
 			if(Brush.angle != 0) _mtx.rotate(Math.PI * 2 * (Brush.angle / 360));
 			_mtx.translate(X+Brush.origin.x,Y+Brush.origin.y);
 			#if flash9
-			var brushBlend:BlendMode = cast(Brush.blend, BlendMode);
+			var brushBlend:BlendMode = Brush.blend;
 			#else
 			var brushBlend:String = Brush.blend;
 			#end
@@ -566,7 +570,7 @@ import flash.display.Bitmap;
 			if(angle != 0) _mtx.rotate(Math.PI * 2 * (angle / 360));
 			_mtx.translate(_point.x+origin.x,_point.y+origin.y);
 			#if flash9
-			var blendMode:BlendMode = cast(blend, BlendMode);
+			var blendMode:BlendMode = blend;
 			#else
 			var blendMode:String = blend;
 			#end
