@@ -223,9 +223,7 @@ package org.flixel;
 				for (i in 0 ... nl)
 					height += _tf.getLineMetrics(i).height;
 				#else
-				var nl:Int = 1;
-				for (i in 0 ... nl)
-					height += _tf.defaultTextFormat.size;
+				height = _tf.textHeight;
 				#end
 				height += 4; //account for 2px gutter on top and bottom
 				_pixels = new BitmapData(Math.floor(width),Math.floor(height),true,0);
