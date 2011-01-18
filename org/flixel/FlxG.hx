@@ -325,7 +325,7 @@ package org.flixel;
 				music = new FlxSound();
 			else if(music.active)
 				music.stop();
-			music.loadInstance(MusicIns,true);
+			music.loadIns(MusicIns, true);
 			music.volume = Volume;
 			music.survive = true;
 			music.play();
@@ -339,7 +339,7 @@ package org.flixel;
 		*/
 		public static function playMusicRessy(Path:String,?Volume:Float=1.0):Void
 		{
-			playMusicIns(Ressy.instance.getStr(Path), volume);
+			playMusicIns(Ressy.instance.getStr(Path), Volume);
 		}
 		
 		/**
@@ -357,12 +357,17 @@ package org.flixel;
 			var index:Int = -1;
 			for (i in 0 ... sl) {
 				if(!sounds[i].active) {
-					break;
 					index = i;
+					break;
 				}
 			}
-			if(sounds[index] == null)
+			if ( index == -1 ) {
+				sounds.push(new FlxSound());
+				index = sounds.length - 1;
+			}
+			else if (sounds[index] == null) {
 				sounds[index] = new FlxSound();
+			}
 			var s:FlxSound = sounds[index];
 			s.loadEmbedded(EmbeddedSound,Looped);
 			s.volume = Volume;
@@ -373,26 +378,31 @@ package org.flixel;
 		/**
 		 * Creates a new sound object from an instance.
 		 * 
-		 * @param	InstanceSound	The sound you want to play.
+		 * @param	SoundIns  The sound you want to play.
 		 * @param	Volume			How loud to play it (0 to 1).
 		 * @param	Looped			Whether or not to loop this sound.
 		 * 
 		 * @return	A <code>FlxSound</code> object.
 		 */
-		public static function playIns(InstanceSound:Sound,?Volume:Float=1.0,?Looped:Bool=false):FlxSound
+		public static function playIns(SoundIns:Sound,?Volume:Float=1.0,?Looped:Bool=false):FlxSound
 		{
 			var sl:Int = sounds.length;
 			var index:Int = -1;
 			for (i in 0 ... sl) {
-				if(!(cast( sounds[i], FlxSound)).active) {
-					break;
+				if(!sounds[i].active) {
 					index = i;
+					break;
 				}
 			}
-			if(sounds[index] == null)
+			if (index == -1) {
+				sounds.push(new FlxSound());
+				index = sounds.length - 1;
+			}
+			else if (sounds[index] == null) {
 				sounds[index] = new FlxSound();
+			}
 			var s:FlxSound = sounds[index];
-			s.loadInstance(InstanceSound,Looped);
+			s.loadIns(SoundIns,Looped);
 			s.volume = Volume;
 			s.play();
 			return s;
@@ -409,7 +419,7 @@ package org.flixel;
 		 */
 		public static function playRessy(Path:String,?Volume:Float=1.0,?Looped:Bool=false):FlxSound
 		{
-			return playIns(Ressy.instance.getStr(Path));
+			return playIns(Ressy.instance.getStr(Path), Volume, Looped);
 		}
 		
 		/**
@@ -426,13 +436,18 @@ package org.flixel;
 			var sl:Int = sounds.length;
 			var index:Int = -1;
 			for (i in 0 ... sl) {
-				if(!(cast( sounds[i], FlxSound)).active) {
+				if(!sounds[i].active) {
 					index = i;
 					break;
 				}
 			}
-			if(sounds[index] == null)
+			if ( index == -1 ) {
+				sounds.push(new FlxSound());
+				index = sounds.length - 1;
+			}
+			else if (sounds[index] == null) {
 				sounds[index] = new FlxSound();
+			}
 			var s:FlxSound = sounds[index];
 			s.loadStream(URL,Looped);
 			s.volume = Volume;

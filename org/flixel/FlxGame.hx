@@ -18,6 +18,8 @@ import flash.Lib;
 import org.flixel.data.FlxConsole;
 import org.flixel.data.FlxPause;
 
+import ressy.Ressy;
+
 #if flash9
 import flash.text.AntiAliasType;
 import flash.text.GridFitType;
@@ -104,6 +106,9 @@ class FlxGame extends Sprite {
 		#if flash9
 		flash.ui.Mouse.hide();
 		#end
+		
+		var r = Ressy.instance;
+		r.registerFont(r.getStr("flixel.system"), "system");
 		
 		_zoom = Zoom;
 		FlxState.bgColor = 0xff000000;
