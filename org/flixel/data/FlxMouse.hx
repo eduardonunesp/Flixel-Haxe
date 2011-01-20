@@ -8,7 +8,9 @@ package org.flixel.data;
 	import org.flixel.FlxSprite;
 	import org.flixel.FlxU;
 	
+	#if (ressy || flixelAssets)
 	import ressy.Ressy;
+	#end
 	
 	/**
 	 * This class helps contain and track the mouse pointer in your game.
@@ -52,7 +54,9 @@ package org.flixel.data;
 		 */
 		var _out:Bool;
 
+		#if flixelAssets
 		var _defaultCursor:BitmapData;
+		#end
 		
 		/**
 		 * Constructor.
@@ -68,7 +72,9 @@ package org.flixel.data;
 			cursor = null;
 			_out = false;
 
+			#if flixelAssets
 			_defaultCursor = ressy.Ressy.instance.getStr("flixel.cursor").bitmapData;
+			#end
 		}
 		
 		/**
@@ -89,6 +95,7 @@ package org.flixel.data;
 				load(null);
 		}
 
+		#if (ressy || flixelAssets)
 		/**
 		 * Either show an existing cursor or load a new one.
 		 * 
@@ -118,6 +125,7 @@ package org.flixel.data;
 		{
 			showIns((Graphic==null)? null : Ressy.instance.getStr(Graphic).bitmapData, XOffset, YOffset);
 		}
+		#end
 		
 		/**
 		 * Hides the mouse cursor
@@ -142,14 +150,47 @@ package org.flixel.data;
 		{
 			if(Graphic == null)
 			{
-				loadIns(null);
-				return;
+				#if flixelAssets
+					loadIns(null, XOffset, YOffset);
+					return;
+				#else
+					cursor = new FlxSprite(screenX, screenY);
+					cursor.createGraphic(10, 10, 0xffffffff);
+					var bm : BitmapData = new BitmapData(10, 10, false, 0xffffff);
+					bm.setPixel(0, 0, 0x000000);
+					bm.setPixel(1, 0, 0x000000);
+					bm.setPixel(0, 1, 0x000000);
+					bm.setPixel(2, 1, 0x000000);
+					bm.setPixel(0, 2, 0x000000);
+					bm.setPixel(3, 2, 0x000000);
+					bm.setPixel(0, 3, 0x000000);
+					bm.setPixel(4, 3, 0x000000);
+					bm.setPixel(0, 4, 0x000000);
+					bm.setPixel(5, 4, 0x000000);
+					bm.setPixel(0, 5, 0x000000);
+					bm.setPixel(6, 5, 0x000000);
+					bm.setPixel(0, 6, 0x000000);
+					bm.setPixel(7, 6, 0x000000);
+					bm.setPixel(0, 7, 0x000000);
+					bm.setPixel(3, 7, 0x000000);
+					bm.setPixel(4, 7, 0x000000);
+					bm.setPixel(5, 7, 0x000000);
+					bm.setPixel(6, 7, 0x000000);
+					bm.setPixel(0, 8, 0x000000);
+					bm.setPixel(2, 8, 0x000000);
+					bm.setPixel(0, 9, 0x000000);
+					bm.setPixel(1, 9, 0x000000);
+					cursor.pixels = bm;
+				#end
 			}
-			cursor = new FlxSprite(screenX,screenY,Graphic);
+			else {
+				cursor = new FlxSprite(screenX,screenY,Graphic);
+			}
 			cursor.offset.x = XOffset;
 			cursor.offset.y = YOffset;
 		}
 
+		#if (ressy || flixelAssets)
 		/**
 		 * Load a new mouse cursor graphic
 		 * 
@@ -159,8 +200,10 @@ package org.flixel.data;
 		 */
 		public function loadIns(GraphicIns:BitmapData,?XOffset:Int=0,?YOffset:Int=0):Void
 		{
+			#if flixelAssets
 			if(GraphicIns == null)
 				GraphicIns = _defaultCursor;
+			#end
 			cursor = new FlxSprite(screenX,screenY);
 			cursor.loadGraphicIns(GraphicIns);
 			cursor.offset.x = XOffset;
@@ -178,6 +221,7 @@ package org.flixel.data;
 		{
 			loadIns(Ressy.instance.getStr(Graphic).bitmapData, XOffset, YOffset);
 		}
+		#end
 		
 		/**
 		 * Unload the current cursor graphic.  If the current cursor is visible,

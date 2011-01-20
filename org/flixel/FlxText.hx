@@ -33,7 +33,11 @@ package org.flixel;
 		 * @param	Text			The actual text you would like to display initially.
 		 * @param	EmbeddedFont	Whether this text field uses embedded fonts or nto
 		 */
-		public function new(X:Float, Y:Float, Width:Int, ?Text:String=null, ?EmbeddedFont:Bool=false)
+		#if (flixelAssets && embed)
+		public function new(X:Float, Y:Float, Width:Int, ?Text:String = null, ?EmbeddedFont:Bool = true)
+		#else
+		public function new(X:Float, Y:Float, Width:Int, ?Text:String = null, ?EmbeddedFont:Bool = false)
+		#end
 		{
 			super(Math.floor(X),Math.floor(Y));
 			createGraphic(Width, 1, 0);
@@ -51,7 +55,11 @@ package org.flixel;
 			_tf.multiline = true;
 			_tf.wordWrap = true;
 			_tf.text = Text;
+			#if flixelAssets
+			var tf:TextFormat = new TextFormat("system", 8, 0xffffff);
+			#else
 			var tf:TextFormat = new TextFormat("Arial", 8, 0xffffff);
+			#end
 			_tf.defaultTextFormat = tf;
 			_tf.setTextFormat(tf);
 			if(Text.length <= 0)

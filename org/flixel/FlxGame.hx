@@ -18,7 +18,9 @@ import flash.Lib;
 import org.flixel.data.FlxConsole;
 import org.flixel.data.FlxPause;
 
+#if (ressy || flixelAssets)
 import ressy.Ressy;
+#end
 
 #if flash9
 import flash.text.AntiAliasType;
@@ -107,8 +109,11 @@ class FlxGame extends Sprite {
 		flash.ui.Mouse.hide();
 		#end
 		
+		// Loading "system" font if "flixelAssets" is set
+		#if flixelAssets
 		var r = Ressy.instance;
 		r.registerFont(r.getStr("flixel.system"), "system");
+		#end
 		
 		_zoom = Zoom;
 		FlxState.bgColor = 0xff000000;
@@ -156,8 +161,10 @@ class FlxGame extends Sprite {
 	 */
 	public function showSoundTray(?Silent:Bool=false):Void
 	{
+		#if flixelAssets
 		if(!Silent)
 			FlxG.playRessy("flixel.beep");
+		#end
 		_soundTrayTimer = 1;
 		_soundTray.y = _gameYOffset*_zoom;
 		_soundTray.visible = true;

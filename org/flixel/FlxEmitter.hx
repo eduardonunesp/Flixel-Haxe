@@ -3,7 +3,9 @@ package org.flixel;
 import flash.display.Bitmap;
 import flash.display.BitmapData;
 
+#if (ressy || flixelAssets)
 import ressy.Ressy;
+#end
 
 /**
  * <code>FlxEmitter</code> is a lightweight particle emitter.
@@ -177,6 +179,7 @@ class FlxEmitter extends FlxGroup {
 		return this;
 	}
 	
+	#if (ressy || flixelAssets)
 	/**
 	 * This function generates a new array of sprites to attach to the emitter.
 	 * 
@@ -257,6 +260,7 @@ class FlxEmitter extends FlxGroup {
 	{
 		return createSpritesIns(Ressy.instance.getStr(Graphics).bitmapData, Quantity, BakedRotations, Multiple, Collide);
 	}
+	#end
 
 	/**
 	 * A more compact way of setting the width and height of the emitter.

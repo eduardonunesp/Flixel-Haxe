@@ -4,7 +4,9 @@ package org.flixel;
 	import flash.display.BitmapData;
 	import flash.geom.Rectangle;
 	
+	#if (ressy || flixelAssets)
 	import ressy.Ressy;
+	#end
 	
 	/**
 	 * This is the basic "environment object" class, used to create simple walls and floors.
@@ -85,6 +87,7 @@ package org.flixel;
 			}
 		}
 		
+		#if (ressy || flixelAssets)
 		/**
 		 * Fills the block with a randomly arranged selection of graphics from the image provided.
 		 * 
@@ -124,6 +127,7 @@ package org.flixel;
 		{
 			loadGraphicIns(Ressy.instance.getStr(TileGraphic).bitmapData, Empties);
 		}
+		#end
 		
 		/**
 		 * Draws this block.

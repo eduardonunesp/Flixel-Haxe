@@ -15,7 +15,9 @@ package org.flixel;
 	import org.flixel.data.FlxFlash;
 	import org.flixel.data.FlxFade;
 	
+	#if (ressy || flixelAssets)
 	import ressy.Ressy;
+	#end
 	
 	/**
 	 * This is a global helper class full of useful functions for audio,
@@ -313,6 +315,7 @@ package org.flixel;
 			music.play();
 		}
 		
+		#if (ressy || flixelAssets)
 		/**
 		* Set up and play a looping background soundtrack.
 		* 
@@ -341,6 +344,7 @@ package org.flixel;
 		{
 			playMusicIns(Ressy.instance.getStr(Path), Volume);
 		}
+		#end
 		
 		/**
 		 * Creates a new sound object from an embedded <code>Class</code> object.
@@ -375,6 +379,7 @@ package org.flixel;
 			return s;
 		}
 		
+		#if (ressy || flixelAssets)
 		/**
 		 * Creates a new sound object from an instance.
 		 * 
@@ -421,6 +426,7 @@ package org.flixel;
 		{
 			return playIns(Ressy.instance.getStr(Path), Volume, Looped);
 		}
+		#end
 		
 		/**
 		 * Creates a new sound object from a URL.

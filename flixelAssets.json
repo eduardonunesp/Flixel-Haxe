@@ -1,0 +1,9 @@
+
+{
+	"name" : "flixelAssets",
+	"files" : [ 
+	{
+		"name" : "flixel",
+		"files" : [ "autotiles.png", "autotiles_alt.png", "beep.mp3", "close.png", "cursor.png", "delicious.png", "digg.png", "donate.png", "flixel.mp3", "key_0.png", "key_minus.png", "key_p.png", "key_plus.png", "logo.png", "logo_corners.png", "logo_light.png", "reddit.png", "stumble.png", "system.swf", "twitter.png" ]
+	} ]
+}

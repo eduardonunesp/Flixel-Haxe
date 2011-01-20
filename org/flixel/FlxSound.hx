@@ -6,7 +6,9 @@ package org.flixel;
 	import flash.media.SoundTransform;
 	import flash.net.URLRequest;
 	
+	#if (ressy || flixelAssets)
 	import ressy.Ressy;
+	#end
 	
 	/**
 	 * This is the universal flixel sound object, used for streaming, music, and sound effects.
@@ -111,6 +113,7 @@ package org.flixel;
 			return this;
 		}
 		
+		#if (ressy || flixelAssets)
 		/**
 		 * Load sound from Sound Instance
 		 * 
@@ -143,6 +146,7 @@ package org.flixel;
 		{
 			return loadIns(Ressy.instance.getStr(SoundRes), Looped);
 		}
+		#end
 		
 		/**
 		 * One of two main setup functions for sounds, this function loads a sound from a URL.

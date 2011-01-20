@@ -1,5 +1,6 @@
 package org.flixel.data;
 	import flash.display.Bitmap;
+	import flash.display.BitmapData;
 
 	import org.flixel.FlxSprite;
 	import org.flixel.FlxButton;
@@ -114,7 +115,9 @@ package org.flixel.data;
 		public function new()
 		{
 			super();
+			#if flixelAssets
 			var r = ressy.Ressy.instance;
+			#end
 			var s:FlxSprite;
 			y = -21;
 			_ty = y;
@@ -132,39 +135,63 @@ package org.flixel.data;
 			_bottomBar.createGraphic(FlxG.width,1,0x7fffffff);
 			_bottomBar.scrollFactor.x = 0;
 			_bottomBar.scrollFactor.y = 0;
-			_donate = new FlxButton(3,0,onDonate);
+			_donate = new FlxButton(3, 0, onDonate);
 			s = new FlxSprite(0,0);
-			s.loadGraphicIns(r.getStr("flixel.donate").bitmapData);
+			#if flixelAssets
+				s.loadGraphicIns(r.getStr("flixel.donate").bitmapData);
+			#else
+				s.createGraphic(51, 13, 0xffff9b19);
+			#end
 			_donate.loadGraphic(s);
 			_donate.scrollFactor.x = 0;
 			_donate.scrollFactor.y = 0;
 			_stumble = new FlxButton(Math.floor(FlxG.width/2-6-13-6-13-6),0,onStumble);
-			s = new FlxSprite(0,0);
-			s.loadGraphicIns(r.getStr("flixel.stumble").bitmapData);
+			s = new FlxSprite(0, 0);
+			#if flixelAssets
+				s.loadGraphicIns(r.getStr("flixel.stumble").bitmapData);
+			#else
+				s.createGraphic(13, 13, 0xff58ca38);
+			#end
 			_stumble.loadGraphic(s);
 			_stumble.scrollFactor.x = 0;
 			_stumble.scrollFactor.y = 0;
 			_digg = new FlxButton(Math.floor(FlxG.width/2-6-13-6),0,onDigg);
-			s = new FlxSprite(0,0);
-			s.loadGraphicIns(r.getStr("flixel.digg").bitmapData);
+			s = new FlxSprite(0, 0);
+			#if flixelAssets
+				s.loadGraphicIns(r.getStr("flixel.digg").bitmapData);
+			#else
+				s.createGraphic(13, 13, 0xff2385bf);
+			#end
 			_digg.loadGraphic(s);
 			_digg.scrollFactor.x = 0;
 			_digg.scrollFactor.y = 0;
 			_reddit = new FlxButton(Math.floor(FlxG.width/2-6),0,onReddit);
-			s = new FlxSprite(0,0);
-			s.loadGraphicIns(r.getStr("flixel.reddit").bitmapData);
+			s = new FlxSprite(0, 0);
+			#if flixelAssets
+				s.loadGraphicIns(r.getStr("flixel.reddit").bitmapData);
+			#else
+				s.createGraphic(13, 13, 0xffff0000);
+			#end
 			_reddit.loadGraphic(s);
 			_reddit.scrollFactor.x = 0;
 			_reddit.scrollFactor.y = 0;
 			_delicious = new FlxButton(Math.floor(FlxG.width/2+7+6),0,onDelicious);
-			s = new FlxSprite(0,0);
-			s.loadGraphicIns(r.getStr("flixel.delicious").bitmapData);
+			s = new FlxSprite(0, 0);
+			#if flixelAssets
+				s.loadGraphicIns(r.getStr("flixel.delicious").bitmapData);
+			#else
+				s.createGraphic(12, 12, 0xff296487);
+			#end
 			_delicious.loadGraphic(s);
 			_delicious.scrollFactor.x = 0;
 			_delicious.scrollFactor.y = 0;
 			_twitter = new FlxButton(Math.floor(FlxG.width/2+7+6+12+6),0,onTwitter);
-			s = new FlxSprite(0,0);
-			s.loadGraphicIns(r.getStr("flixel.twitter").bitmapData);
+			s = new FlxSprite(0, 0);
+			#if flixelAssets
+				s.loadGraphicIns(r.getStr("flixel.twitter").bitmapData);
+			#else
+				s.createGraphic(13, 13, 0xff38d5ff);
+			#end
 			_twitter.loadGraphic(s);
 			_twitter.scrollFactor.x = 0;
 			_twitter.scrollFactor.y = 0;
@@ -173,8 +200,18 @@ package org.flixel.data;
 			_caption.scrollFactor.x = 0;
 			_caption.scrollFactor.y = 0;
 			_close = new FlxButton(Math.floor(FlxG.width-16),0,onClose);
-			s = new FlxSprite(0,0);
-			s.loadGraphicIns(r.getStr("flixel.close").bitmapData);
+			s = new FlxSprite(0, 0);
+			#if flixelAssets
+				s.loadGraphicIns(r.getStr("flixel.close").bitmapData);
+			#else
+				s.createGraphic(13, 13, 0xff828282);
+				var bm : BitmapData = new BitmapData(13,13,false, 0x828282);
+				for (i in 1...12) {
+					bm.setPixel(i, i, 0x000000);
+					bm.setPixel(13 - i, i, 0x000000);
+				}
+				s.pixels = bm;
+			#end
 			_close.loadGraphic(s);
 			_close.scrollFactor.x = 0;
 			_close.scrollFactor.y = 0;

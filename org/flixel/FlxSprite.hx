@@ -8,6 +8,10 @@ package org.flixel;
 	
 	import org.flixel.data.FlxAnim;
 import flash.display.Bitmap;
+
+	#if (ressy || flixelAssets)
+	import ressy.Ressy;
+	#end
 	
 	#if flash9
 	import flash.display.BlendMode;
@@ -196,6 +200,7 @@ import flash.display.Bitmap;
 			return this;
 		}
 
+		#if (ressy || flixelAssets)
 		/**
 		 * Load an image from an embedded graphic file.
 		 * 
@@ -254,6 +259,7 @@ import flash.display.Bitmap;
 		{
 			return loadGraphicIns(Ressy.instance.getStr(Graphic).bitmapData, Animated, Reverse, Width, Height);
 		}
+		#end
 		
 		/**
 		 * Create a pre-rotated sprite sheet from a simple sprite.
@@ -336,6 +342,7 @@ import flash.display.Bitmap;
 			return this;
 		}
 		
+		#if (ressy || flixelAssets)
 		/**
 		 * Create a pre-rotated sprite sheet from a simple sprite.
 		 * This can make a huge difference in graphical performance!
@@ -432,6 +439,7 @@ import flash.display.Bitmap;
 		{
 			return loadRotatedGraphicIns(Ressy.instance.getStr(Graphic).bitmapData, Rotations, Frame, AntiAliasing, AutoBuffer);
 		}
+		#end
 		
 		/**
 		 * This function creates a flat colored square image dynamically.
