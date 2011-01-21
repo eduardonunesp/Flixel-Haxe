@@ -214,6 +214,22 @@ package org.flixel;
 			return _pause;
 		}
 		
+		#if flixelAssets
+		/**
+		 * If the flixels assets are being used, provide a method to initialize the ressy library
+		 * 
+		 * @param	Callback Method to call once the library is loaded
+		 */
+		public static function init(Callback : Dynamic) : Void
+		{
+			#if embedFlixel
+				ressy.Eddy.instance.load("flixelSWF", "flixelJSON", Callback);
+			#else
+				ressy.Loddy.instance.load("flixelAssets.json", Callback);
+			#end
+		}
+		#end
+		
 		/**
 		 * @private
 		 */

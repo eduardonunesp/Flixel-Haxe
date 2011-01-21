@@ -33,7 +33,7 @@ package org.flixel;
 		 * @param	Text			The actual text you would like to display initially.
 		 * @param	EmbeddedFont	Whether this text field uses embedded fonts or nto
 		 */
-		#if (flixelAssets && embed)
+		#if (flixelAssets && embedFlixel)
 		public function new(X:Float, Y:Float, Width:Int, ?Text:String = null, ?EmbeddedFont:Bool = true)
 		#else
 		public function new(X:Float, Y:Float, Width:Int, ?Text:String = null, ?EmbeddedFont:Bool = false)
