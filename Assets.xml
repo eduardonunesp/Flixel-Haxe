@@ -4,7 +4,7 @@
     <frame>
         <library>
            <font id="vera" import="org/flixel/data/assets/nokiafc22.ttf" glyphs="0123456789abcdefghijlmnoprstuvxzwyk"/> 
-           <clip id="logo" import="org/flixel/data/assets/logo.png"/>
+           <bitmap id="logo" import="org/flixel/data/assets/logo.png"/>
         </library>
     </frame>
 </movie>
