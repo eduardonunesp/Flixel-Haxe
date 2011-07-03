@@ -8,10 +8,6 @@ class FlxPoint
     /**
      * @default 0
      */
-
-    /**
-     * @default 0
-     */
     public var x:Float;
     /**
      * @default 0

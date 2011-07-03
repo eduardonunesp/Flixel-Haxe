@@ -8,10 +8,10 @@ import flash.geom.Point;
  * basic state information, sizes, scrolling, and basic physics & motion.
  */
 class FlxObject extends FlxRect {
+
     /**
      * Kind of a global on/off switch for any objects descended from <code>FlxObject</code>.
      */
-
     public var fixed(getFixed, setFixed) : Bool;
     public var solid(getSolid, setSolid) : Bool;
     /**

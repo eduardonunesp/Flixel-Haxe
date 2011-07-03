@@ -7,15 +7,16 @@ class FlxRect extends FlxPoint {
     /**
      * @default 0
      */
-
     public var bottom(getBottom, null):Float;
     public var left(getLeft, null):Float;
     public var right(getRight, null):Float;
     public var top(getTop, null):Float;
+
     /**
      * @default 0
      */
     public var width:Float;
+
     /**
      * @default 0
      */
