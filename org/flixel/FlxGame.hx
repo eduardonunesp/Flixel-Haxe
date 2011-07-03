@@ -107,6 +107,7 @@ class FlxGame extends Sprite {
 #end
 
         SndBeep = Beep_mp3;
+        SndFlixel = Flixel_mp3;
         _zoom = Zoom;
         FlxState.bgColor = 0xff000000;
         FlxG.setGameData(this,GameSizeX,GameSizeY,Zoom);
