@@ -15,6 +15,7 @@ import flash.text.TextFormatAlign;
 import flash.media.Sound;
 import flash.Lib;
 
+import LibraryClasses;
 import org.flixel.data.FlxConsole;
 import org.flixel.data.FlxPause;
 
@@ -105,6 +106,7 @@ class FlxGame extends Sprite {
         flash.ui.Mouse.hide();
 #end
 
+        SndBeep = Beep_mp3;
         _zoom = Zoom;
         FlxState.bgColor = 0xff000000;
         FlxG.setGameData(this,GameSizeX,GameSizeY,Zoom);
