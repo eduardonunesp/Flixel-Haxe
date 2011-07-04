@@ -7,6 +7,7 @@ import org.flixel.FlxObject;
 import org.flixel.FlxText;
 import org.flixel.FlxG;
 import org.flixel.FlxU;
+import org.flixel.data.assets.LibraryClasses;
 
 #if flash9
 import flash.ui.Mouse;
@@ -114,6 +115,15 @@ class FlxPanel extends FlxObject {
     public function new()
     {
         super();
+
+        ImgDonate = Donate_png;
+        ImgStumble = Stumble_png;
+        ImgDigg = Digg_png;
+        ImgReddit = Reddit_png;
+        ImgDelicious = Delicious_png;
+        ImgTwitter = Twitter_png;
+        ImgClose = Close_png;
+
         y = -21;
         _ty = y;
         _closed = false;

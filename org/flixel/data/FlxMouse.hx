@@ -6,6 +6,7 @@ import flash.events.MouseEvent;
 import org.flixel.FlxPoint;
 import org.flixel.FlxSprite;
 import org.flixel.FlxU;
+import org.flixel.data.assets.LibraryClasses;
 
 /**
  * This class helps contain and track the mouse pointer in your game.
@@ -54,6 +55,7 @@ class FlxMouse
      */
     public function new()
     {
+        ImgDefaultCursor = Cursor_png;
         x = 0;
         y = 0;
         screenX = 0;
