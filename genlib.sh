@@ -11,7 +11,7 @@ fi
 
 genxml() {
     #escape * so it doesn't try to sub with file names in local dir
-    gfx=`find $1 -name [^~.]\*.png -or -name [^~.]\*.jpg`
+    gfx=`find $1 -name [^~.]\*.png`
     swfs=`find $1 -name [^~.]\*.swf`
     fonts=`find $1 -name [^~.]\*.ttf`
     mp3=`find $1 -name [^~.]\*.mp3`
@@ -82,6 +82,10 @@ genxml() {
         if [[ $2 == "snd" ]]; then
             echo "class $1 extends Sound { public function new() { super(); } }" >> $3
         fi
+
+        if [[ $2 == "font" ]]; then
+            echo "class $1 extends Font { public function new() { super(); } }" >> $3
+        fi
     }
 
     echo "<?xml version=\"1.0\" encoding=\"utf-8\"?>"
@@ -109,6 +113,10 @@ genxml() {
         echo "import flash.media.Sound;" >> $class_file
     fi
 
+    if [[ ! -z $fonts ]]; then
+        echo "import flash.text.Font;" >> $class_file
+    fi
+
     #add a blank line after includes
     echo "" >> $class_file
     cl_path=`echo $1 | sed -e 's/\/$//'`
@@ -120,18 +128,17 @@ genxml() {
         echo -e "\t\t\t<bitmap id=\"$id\" name=\"$id\" class=\"$id\" import=\"$path\"/>"
     done
 
-    for swf in $swfs; do
+    for swf_file in $swfs; do
         path=`clean_base_dir $cl_path $swf`
-        id=`make_id $cl_path $file`
-        write_class_file $cl_path "swf" $class_file
+        id=`make_id $cl_path $swf_file`
+        write_class_file $id "swf" $class_file
         echo -e "\t\t\t<clip id=\"$id\" name=\"$id\" class=\"$id\" import=\"$path\"/>"
     done
 
     for font_file in $fonts; do
         path=`clean_base_dir $cl_path $font_file`
         id=`make_id $cl_path $font_file`
-        #TODO: how do fonts go in the class file?
-        #TODO: figure out if i need a more complete set of glyphs
+        write_class_file $id "font" $class_file
         echo -e "\t\t\t<font id=\"$id\" name=\"$id\" import=\"$path\" glyphs=\"abcdefghijklmnopqrstuvwxyz\"/>"
     done
 
