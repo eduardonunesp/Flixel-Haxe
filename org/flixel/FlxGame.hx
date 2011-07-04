@@ -455,12 +455,12 @@ class FlxGame extends Sprite {
         text.wordWrap = true;
         text.selectable = false;
 #if flash9
-        text.embedFonts = false;
+        text.embedFonts = true;
         text.antiAliasType = AntiAliasType.NORMAL;
         text.gridFitType = GridFitType.PIXEL;
 #else
 #end
-        text.defaultTextFormat = new TextFormat("Arial",8,0xffffff,null,null,null,null,null,TextFormatAlign.CENTER);
+        text.defaultTextFormat = new TextFormat("Nokiafc22_ttf",8,0xffffff,null,null,null,null,null,TextFormatAlign.CENTER);
         _soundTray.addChild(text);
         text.text = "VOLUME";
         text.y = 16;

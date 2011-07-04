@@ -33,7 +33,7 @@ class FlxText extends FlxSprite {
      * @param Text   The actual text you would like to display initially.
      * @param EmbeddedFont Whether this text field uses embedded fonts or nto
      */
-    public function new(X:Float, Y:Float, Width:Int, ?Text:String=null, ?EmbeddedFont:Bool=false)
+    public function new(X:Float, Y:Float, Width:Int, ?Text:String=null)
     {
         super(Math.floor(X),Math.floor(Y));
         createGraphic(Width, 1, 0);
@@ -42,16 +42,13 @@ class FlxText extends FlxSprite {
             Text = "";
         _tf = new TextField();
         _tf.width = Width;
-#if flash9
-        _tf.embedFonts = EmbeddedFont;
+        _tf.embedFonts = true;
         _tf.sharpness = 100;
-#else
-#end
         _tf.selectable = false;
         _tf.multiline = true;
         _tf.wordWrap = true;
         _tf.text = Text;
-        var tf:TextFormat = new TextFormat("Arial", 8, 0xffffff);
+        var tf:TextFormat = new TextFormat("Nokiafc22_ttf", 8, 0xffffff);
         _tf.defaultTextFormat = tf;
         _tf.setTextFormat(tf);
         if(Text.length <= 0)
