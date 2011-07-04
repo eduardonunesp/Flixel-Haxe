@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<movie version="9">
+	<background color="#ffffff"/>
+	<frame>
+		<library>
+			<bitmap id="org.flixel.data.assets.Digg_png" name="org.flixel.data.assets.Digg_png" class="Digg_png" import="digg.png"/>
+			<bitmap id="org.flixel.data.assets.Logo_light_png" name="org.flixel.data.assets.Logo_light_png" class="Logo_light_png" import="logo_light.png"/>
+			<bitmap id="org.flixel.data.assets.Key_plus_png" name="org.flixel.data.assets.Key_plus_png" class="Key_plus_png" import="key_plus.png"/>
+			<bitmap id="org.flixel.data.assets.Donate_png" name="org.flixel.data.assets.Donate_png" class="Donate_png" import="donate.png"/>
+			<bitmap id="org.flixel.data.assets.Cursor_png" name="org.flixel.data.assets.Cursor_png" class="Cursor_png" import="cursor.png"/>
+			<bitmap id="org.flixel.data.assets.Key_0_png" name="org.flixel.data.assets.Key_0_png" class="Key_0_png" import="key_0.png"/>
+			<bitmap id="org.flixel.data.assets.Reddit_png" name="org.flixel.data.assets.Reddit_png" class="Reddit_png" import="reddit.png"/>
+			<bitmap id="org.flixel.data.assets.Twitter_png" name="org.flixel.data.assets.Twitter_png" class="Twitter_png" import="twitter.png"/>
+			<bitmap id="org.flixel.data.assets.Autotiles_png" name="org.flixel.data.assets.Autotiles_png" class="Autotiles_png" import="autotiles.png"/>
+			<bitmap id="org.flixel.data.assets.Delicious_png" name="org.flixel.data.assets.Delicious_png" class="Delicious_png" import="delicious.png"/>
+			<bitmap id="org.flixel.data.assets.Key_p_png" name="org.flixel.data.assets.Key_p_png" class="Key_p_png" import="key_p.png"/>
+			<bitmap id="org.flixel.data.assets.Logo_corners_png" name="org.flixel.data.assets.Logo_corners_png" class="Logo_corners_png" import="logo_corners.png"/>
+			<bitmap id="org.flixel.data.assets.Close_png" name="org.flixel.data.assets.Close_png" class="Close_png" import="close.png"/>
+			<bitmap id="org.flixel.data.assets.Key_minus_png" name="org.flixel.data.assets.Key_minus_png" class="Key_minus_png" import="key_minus.png"/>
+			<bitmap id="org.flixel.data.assets.Stumble_png" name="org.flixel.data.assets.Stumble_png" class="Stumble_png" import="stumble.png"/>
+			<bitmap id="org.flixel.data.assets.Logo_png" name="org.flixel.data.assets.Logo_png" class="Logo_png" import="logo.png"/>
+			<bitmap id="org.flixel.data.assets.Autotiles_alt_png" name="org.flixel.data.assets.Autotiles_alt_png" class="Autotiles_alt_png" import="autotiles_alt.png"/>
+			<font id="org.flixel.data.assets.Nokiafc22_ttf" name="org.flixel.data.assets.Nokiafc22_ttf" import="nokiafc22.ttf" glyphs="abcdefghijklmnopqrstuvwxyz"/>
+			<sound id="org.flixel.data.assets.Beep_mp3" name="org.flixel.data.assets.Beep_mp3" import="beep.mp3"/>
+			<sound id="org.flixel.data.assets.Flixel_mp3" name="org.flixel.data.assets.Flixel_mp3" import="flixel.mp3"/>
+		</library>
+	</frame>
+</movie>

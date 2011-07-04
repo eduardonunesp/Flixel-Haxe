@@ -15,9 +15,9 @@ import flash.text.TextFormatAlign;
 import flash.media.Sound;
 import flash.Lib;
 
-import LibraryClasses;
 import org.flixel.data.FlxConsole;
 import org.flixel.data.FlxPause;
+import org.flixel.data.assets.LibraryClasses;
 
 #if flash9
 import flash.text.AntiAliasType;
