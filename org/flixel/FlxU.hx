@@ -161,8 +161,15 @@ class FlxU
     public static function endProfile(Start:Int,?Name:String="Profiler",?Log:Bool=true):Int
     {
         var t:Int = Lib.getTimer();
-        if(Log)
+        if(Log) 
+        {
+#if flash            
             FlxG.log(Name+": "+((t-Start)/1000)+"s");
+#else
+            //FlxG::log(Name+": "+((t-Start)/1000)+"s");
+#end
+        }
+
         return t;
     }
 
@@ -246,10 +253,20 @@ class FlxU
     public static function computeVelocity(Velocity:Float, ?Acceleration:Float=0, ?Drag:Float=0, ?Max:Float=10000):Float
     {
         if(Acceleration != 0)
+        {
+#if flash
             Velocity += Acceleration*FlxG.elapsed;
+#else
+            //Velocity += Acceleration*FlxG.elapsed;
+#end
+        }
         else if(Drag != 0)
         {
+#if flash            
             var d:Float = Drag*FlxG.elapsed;
+#else            
+            var d:Float = 0; //Drag*FlxG.elapsed;
+#end           
             if(Velocity - d > 0)
                 Velocity -= d;
             else if(Velocity + d < 0)

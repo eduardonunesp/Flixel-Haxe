@@ -169,7 +169,11 @@ class FlxSprite extends FlxObject {
     public function loadGraphic(Graphic:Class<Bitmap>,?Animated:Bool=false,?Reverse:Bool=false,?Width:Int=0,?Height:Int=0,?Unique:Bool=false):FlxSprite
     {
         _bakedRotation = 0;
+#if flash        
         _pixels = FlxG.addBitmap(Graphic,Reverse,Unique);
+#else
+
+#end        
         if(Reverse)
             _flipped = _pixels.width>>1;
         else
@@ -212,7 +216,11 @@ class FlxSprite extends FlxObject {
     {
         //Create the brush and canvas
         var rows:Int = Math.floor(Math.sqrt(Rotations));
+#if flash        
         var brush:BitmapData = FlxG.addBitmap(Graphic);
+#else
+        var brush:BitmapData = null;
+#end
         if(Frame >= 0)
         {
             //Using just a segment of the graphic - find the right bit here
@@ -242,8 +250,17 @@ class FlxSprite extends FlxObject {
         width = max*cols;
         height = max*rows;
         var key:String = Type.getClassName(Graphic) + ":" + Frame + ":" + width + "x" + height;
+#if flash
         var skipGen:Bool = FlxG.checkBitmapCache(key);
+#else
+        var skipGen:Bool = false;
+#end
+
+#if flash
         _pixels = FlxG.createBitmap(Math.floor(width), Math.floor(height), 0, true, key);
+#else
+
+#end
         width = frameWidth = _pixels.width;
         height = frameHeight = _pixels.height;
         _bakedRotation = 360/Rotations;
@@ -291,7 +308,11 @@ class FlxSprite extends FlxObject {
     public function createGraphic(Width:Int,Height:Int,?Color:Int=0xffffffff,?Unique:Bool=false,?Key:String=null):FlxSprite
     {
         _bakedRotation = 0;
+#if flash        
         _pixels = FlxG.createBitmap(Width,Height,Color,Unique,Key);
+#else
+
+#end
         width = frameWidth = _pixels.width;
         height = frameHeight = _pixels.height;
         resetHelpers();
@@ -342,8 +363,12 @@ class FlxSprite extends FlxObject {
         _framePixels.copyPixels(_pixels,_flashRect,_flashPointZero);
         //if (forAlien)
         // flash.Lib.current.addChild(new Bitmap(_framePixels));
+#if flash        
         if(FlxG.showBounds)
             drawBounds();
+#else
+
+#end
         _caf = 0;
         refreshHulls();
     }
@@ -358,8 +383,11 @@ class FlxSprite extends FlxObject {
     public override function setSolid(Solid:Bool):Bool{
         var os:Bool = _solid;
         _solid = Solid;
+#if flash        
         if((os != _solid) && FlxG.showBounds)
             calcFrame();
+#else
+#end
         return Solid;
     }
 
@@ -373,8 +401,11 @@ class FlxSprite extends FlxObject {
     public override function setFixed(Fixed:Bool):Bool{
         var of:Bool = _fixed;
         _fixed = Fixed;
+#if flash
         if((of != _fixed) && FlxG.showBounds)
             calcFrame();
+#else            
+#end            
         return Fixed;
     }
 
@@ -514,7 +545,11 @@ class FlxSprite extends FlxObject {
         }
         if((_curAnim != null) && (_curAnim.delay > 0) && (_curAnim.looped || !finished))
         {
+#if flash            
             _frameTimer += FlxG.elapsed;
+#else 
+            _frameTimer += 0;
+#end
             if(_frameTimer > _curAnim.delay)
             {
                 _frameTimer -= _curAnim.delay;
@@ -559,7 +594,11 @@ class FlxSprite extends FlxObject {
         {
             //DEBUG!
             //flash.Lib.current.addChild(new Bitmap(_framePixels));
+#if flash            
             FlxG.buffer.copyPixels(_framePixels,_flashRect,_flashPoint,null,null,true);
+#else            
+
+#end            
             return;
         }
 
@@ -574,7 +613,12 @@ class FlxSprite extends FlxObject {
 #else
         var blendMode:String = blend;
 #end
+
+#if flash
         FlxG.buffer.draw(_framePixels,_mtx,null,blendMode,null,antialiasing);
+#else
+
+#end        
     }
 
     /**
@@ -596,11 +640,16 @@ class FlxSprite extends FlxObject {
      */
     public override function overlapsPoint(X:Float,Y:Float,?PerPixel:Bool = false):Bool
     {
+#if flash        
         X -= FlxU.floor(FlxG.scroll.x);
         Y -= FlxU.floor(FlxG.scroll.y);
+#else
+        X = 0;
+        Y = 0;
+#end        
         getScreenXY(_point);
         if(PerPixel) {  //TODO: get PerPixel working in cpp
-#if flash9
+#if flash
             return _framePixels.hitTest(new Point(0,0),0xFF,new Point(X-_point.x,Y-_point.y));
 #else
             return true;
@@ -710,8 +759,12 @@ class FlxSprite extends FlxObject {
     public override function getScreenXY(?Point:FlxPoint=null):FlxPoint
     {
         if(Point == null) Point = new FlxPoint();
+#if flash        
         Point.x = FlxU.floor(x + FlxU.roundingError)+FlxU.floor(FlxG.scroll.x*scrollFactor.x) - offset.x;
         Point.y = FlxU.floor(y + FlxU.roundingError)+FlxU.floor(FlxG.scroll.y*scrollFactor.y) - offset.y;
+#else
+
+#end
         return Point;
     }
 
@@ -746,12 +799,17 @@ class FlxSprite extends FlxObject {
         _framePixels.fillRect(new Rectangle(0, 0, _framePixels.width, _framePixels.height), 0x00FFFFFF);
         _framePixels.copyPixels(_pixels,_flashRect,_flashPointZero);
         _flashRect.x = _flashRect.y = 0;
-#if flash9  //TODO: get color transform working in cpp
+#if flash  //TODO: get color transform working in cpp
         if(_ct != null) _framePixels.colorTransform(_flashRect,_ct);
 #else
 #end
+
+#if flash        
         if(FlxG.showBounds)
             drawBounds();
+#else
+
+#end            
         if(_callback != null) _callback(_curAnim.name,_curFrame,_caf);
     }
 

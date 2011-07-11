@@ -3,7 +3,10 @@ package org.flixel.data.assets;
 import flash.display.Bitmap;
 import flash.display.MovieClip;
 import flash.media.Sound;
+
+#if flash
 import flash.text.Font;
+#end
 
 class Digg_png extends Bitmap { public function new() { super(); } }
 class Logo_light_png extends Bitmap { public function new() { super(); } }
@@ -23,6 +26,10 @@ class Stumble_png extends Bitmap { public function new() { super(); } }
 class Logo_png extends Bitmap { public function new() { super(); } }
 class Autotiles_alt_png extends Bitmap { public function new() { super(); } }
 class Library_swf extends MovieClip { public function new() { super(); } }
+
+#if flash
 class Nokiafc22_ttf extends Font { public function new() { super(); } }
+#end
+
 class Beep_mp3 extends Sound { public function new() { super(); } }
 class Flixel_mp3 extends Sound { public function new() { super(); } }

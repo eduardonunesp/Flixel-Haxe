@@ -42,8 +42,10 @@ class FlxText extends FlxSprite {
             Text = "";
         _tf = new TextField();
         _tf.width = Width;
+#if flash        
         _tf.embedFonts = true;
         _tf.sharpness = 100;
+#end
         _tf.selectable = false;
         _tf.multiline = true;
         _tf.wordWrap = true;

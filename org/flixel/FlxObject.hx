@@ -311,7 +311,11 @@ class FlxObject extends FlxRect {
 
         vc = (FlxU.computeVelocity(angularVelocity,Math.floor(angularAcceleration),Math.floor(angularDrag),Math.floor(maxAngular)) - angularVelocity)/2;
         angularVelocity += vc; 
+#if flash         
         angle += angularVelocity*FlxG.elapsed;
+#else
+
+#end        
         angularVelocity += vc;
 
         var thrustComponents:FlxPoint;
@@ -331,11 +335,19 @@ class FlxObject extends FlxRect {
 
         vc = (FlxU.computeVelocity(velocity.x,acceleration.x+thrustComponents.x,drag.x,maxVelocity.x) - velocity.x)/2;
         velocity.x += vc;
+#if flash        
         var xd:Float = velocity.x*FlxG.elapsed;
+#else
+        var xd:Float = 0;
+#end
         velocity.x += vc;
         vc = (FlxU.computeVelocity(velocity.y,Math.floor(acceleration.y+thrustComponents.y),Math.floor(drag.y),Math.floor(maxVelocity.y)) - velocity.y)/2;
         velocity.y += vc;
+#if flash        
         var yd:Float = velocity.y*FlxG.elapsed;
+#else
+        var yd:Float = 0;
+#end
         velocity.y += vc;
 
         x += xd;
@@ -371,7 +383,11 @@ class FlxObject extends FlxRect {
         {
             if(_flickerTimer > 0)
             {
+#if flash                
                 _flickerTimer -= FlxG.elapsed;
+#else
+                _flickerTimer -= 0;
+#end
                 if(_flickerTimer == 0)
                     _flickerTimer = -1;
             }
@@ -449,8 +465,13 @@ class FlxObject extends FlxRect {
      */
     public function overlapsPoint(X:Float,Y:Float,?PerPixel:Bool = false):Bool
     {
+#if flash        
         X += FlxU.floor(FlxG.scroll.x);
         Y += FlxU.floor(FlxG.scroll.y);
+#else
+        X = 0;
+        Y = 0;
+#end        
         getScreenXY(_point);
         if((X <= _point.x) || (X >= _point.x+width) || (Y <= _point.y) || (Y >= _point.y+height))
             return false;
@@ -573,8 +594,12 @@ class FlxObject extends FlxRect {
     public function getScreenXY(?Point:FlxPoint=null):FlxPoint
     {
         if(Point == null) Point = new FlxPoint();
+#if flash        
         Point.x = FlxU.floor(x + FlxU.roundingError)+FlxU.floor(FlxG.scroll.x*scrollFactor.x);
         Point.y = FlxU.floor(y + FlxU.roundingError)+FlxU.floor(FlxG.scroll.y*scrollFactor.y);
+#else
+
+#end        
         return Point;
     }
 
@@ -586,8 +611,12 @@ class FlxObject extends FlxRect {
     public function onScreen():Bool
     {
         getScreenXY(_point);
+#if flash        
         if((_point.x + width < 0) || (_point.x > FlxG.width) || (_point.y + height < 0) || (_point.y > FlxG.height))
             return false;
+#else
+
+#end
         return true;
     }
 
